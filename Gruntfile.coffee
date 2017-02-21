@@ -8,6 +8,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-exec"
+  grunt.loadNpmTasks "grunt-contrib-concat"
 
   grunt.initConfig
 
@@ -31,7 +32,22 @@ module.exports = (grunt) ->
           cwd: "bower_components/foundation-sites/dist/js/"
           src: "foundation.min.js"
           dest: "vendor/js/"
+        },
+        {
+          expand: true
+          cwd: "bower_components/lodash/dist/"
+          src: "lodash.core.min.js"
+          dest: "vendor/js/"
         }]
+
+    concat:
+      options:
+        separator: ','
+        banner: 'window.markers = ['
+        footer: ']'
+      dist:
+        src: ['_markers/*.json']
+        dest: 'js/markers.js'
 
     exec:
       jekyll:
@@ -48,6 +64,7 @@ module.exports = (grunt) ->
           "_posts/**/*"
           "css/**/*"
           "js/**/*"
+          "_sass/**/*"
           "_config.yml"
           "*.html"
           "*.md"
@@ -65,6 +82,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask "build", [
     "copy"
+    "concat"
     "exec:jekyll"
   ]
 
