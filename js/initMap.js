@@ -1,3 +1,5 @@
+var openedInfoWindow;
+
 function initMap() {
   var center = {lat: 52.231838, lng: 21.005995};
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -5,44 +7,63 @@ function initMap() {
     center: center
   });
 
-  _.forEach(window.markers, function(markerConfig) {
-    var marker = new google.maps.Marker({
-      position: markerConfig.position,
-      map: map,
-      title: markerConfig.title
+  function placeMarkersOnMap(markers) {
+    var heatmap = new google.maps.visualization.HeatmapLayer({
+      data: _.map(markers, function(marker) {
+        return {
+          location: new google.maps.LatLng(marker.position.lat, marker.position.lng),
+          weight: marker.weight
+        }
+      }),
+      gradient: [
+          'rgba(0, 255, 255, 0)',
+          'rgba(0, 255, 255, 1)',
+          'rgba(0, 191, 255, 1)',
+          'rgba(0, 127, 255, 1)',
+          'rgba(0, 63, 255, 1)',
+          'rgba(0, 0, 255, 1)',
+          'rgba(0, 0, 223, 1)',
+          'rgba(0, 0, 191, 1)',
+          'rgba(0, 0, 159, 1)',
+          'rgba(0, 0, 127, 1)',
+          'rgba(63, 0, 91, 1)',
+          'rgba(127, 0, 63, 1)',
+          'rgba(191, 0, 31, 1)',
+          'rgba(255, 0, 0, 1)'
+        ]
     });
-  });
+    heatmap.setMap(map);
+    _.forEach(markers, function(markerConfig) {
+      var marker = new google.maps.Marker({
+        position: markerConfig.position,
+        map: map,
+        title: markerConfig.title
+      });
 
+      var infoWindow = new google.maps.InfoWindow({
+        content: getInfoWindow(markerConfig)
+      });
 
-  //
-  // var contentString = '<div id="content">'+
-  //     '<div id="siteNotice">'+
-  //     '</div>'+
-  //     '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-  //     '<div id="bodyContent">'+
-  //     '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-  //     'sandstone rock formation in the southern part of the '+
-  //     'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-  //     'south west of the nearest large town, Alice Springs; 450&#160;km '+
-  //     '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-  //     'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-  //     'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-  //     'Aboriginal people of the area. It has many springs, waterholes, '+
-  //     'rock caves and ancient paintings. Uluru is listed as a World '+
-  //     'Heritage Site.</p>'+
-  //     '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-  //     'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-  //     '(last visited June 22, 2009).</p>'+
-  //     '</div>'+
-  //     '</div>';
-  //
-  // var infowindow = new google.maps.InfoWindow({
-  //   content: contentString
-  // });
+      marker.addListener('click', function() {
+        if(openedInfoWindow) {
+          openedInfoWindow.close()
+        }
+        openedInfoWindow = infoWindow;
+        infoWindow.open(map, marker);
+      });
+    });
+  }
 
+  getMarkers(placeMarkersOnMap);
+}
 
-
-  // marker.addListener('click', function() {
-  //   infowindow.open(map, marker);
-  // });
+function getInfoWindow(markerConfig) {
+  return  '<div id="content">'+
+            '<div id="site-notice">'+
+            '</div>'+
+            '<h1>'+ markerConfig.title +'</h1>'+
+            '<div id="body-content">'+
+              markerConfig.description +
+            '</div>'+
+          '</div>';
 }

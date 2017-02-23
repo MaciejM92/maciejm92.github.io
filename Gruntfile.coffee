@@ -26,28 +26,37 @@ module.exports = (grunt) ->
           cwd: "bower_components/foundation-sites/dist/css/"
           src: "foundation-flex.min.css"
           dest: "vendor/css/"
-        },
-        {
+        }]
+      foundation:
+        files: [{
           expand: true
           cwd: "bower_components/foundation-sites/dist/js/"
           src: "foundation.min.js"
           dest: "vendor/js/"
-        },
-        {
+        }]
+      lodash:
+        files: [{
           expand: true
           cwd: "bower_components/lodash/dist/"
           src: "lodash.core.min.js"
           dest: "vendor/js/"
         }]
+      tabletop:
+        files: [{
+          expand: true
+          cwd: "bower_components/tabletop/src/"
+          src: "tabletop.min.js"
+          dest: "vendor/js/"
+          }]
 
-    concat:
-      options:
-        separator: ','
-        banner: 'window.markers = ['
-        footer: ']'
-      dist:
-        src: ['_markers/*.json']
-        dest: 'js/markers.js'
+    # concat:
+    #   options:
+    #     separator: ','
+    #     banner: 'window.markers = ['
+    #     footer: ']'
+    #   dist:
+    #     src: ['_markers/*.json']
+    #     dest: 'js/markers.js'
 
     exec:
       jekyll:
@@ -64,6 +73,7 @@ module.exports = (grunt) ->
           "_posts/**/*"
           "css/**/*"
           "js/**/*"
+          "_markers/**/*"
           "_sass/**/*"
           "_config.yml"
           "*.html"
@@ -82,7 +92,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask "build", [
     "copy"
-    "concat"
+    # "concat"
     "exec:jekyll"
   ]
 

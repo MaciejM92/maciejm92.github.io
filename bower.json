@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "foundation-sites": "^6.3.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "tabletop": "^1.5.1"
   }
 }

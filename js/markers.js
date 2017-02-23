@@ -1,25 +1,16 @@
-window.markers = [{
-  "position":
-  {
-    "lat": 52.231838,
-    "lng": 21.005995
-  },
-  "title": "PKiN"
+var publicSpreadsheetUrl = window.config.SOURCE_SPREADSHEET;
+
+function getMarkers(callback) {
+  getData(window.config.MARKERS_SHEET, callback, postProcessMarkers)
 }
-,{
-  "position":
-  {
-    "lat": 52.205369,
-    "lng": 21.024392
-  },
-  "title": "Dworkowa"
+
+function postProcessMarkers(data) {
+  return _.forEach(data, function(marker) {
+    marker.position = {
+      lat: marker.lat,
+      lng: marker.lng
+    };
+    delete marker.lat;
+    delete marker.lng;
+  });
 }
-,{
-  "position":
-  {
-    "lat": 52.221201,
-    "lng": 21.008086
-  },
-  "title": "Politechnika"
-}
-]
