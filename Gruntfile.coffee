@@ -9,6 +9,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-exec"
   grunt.loadNpmTasks "grunt-contrib-concat"
+  grunt.loadNpmTasks "grunt-handlebars-compiler"
 
   grunt.initConfig
 
@@ -48,15 +49,25 @@ module.exports = (grunt) ->
           src: "tabletop.min.js"
           dest: "vendor/js/"
           }]
+      jscookie:
+        files: [{
+          expand: true
+          cwd: "bower_components/js-cookie/src/"
+          src: "js.cookie.js"
+          dest: "vendor/js/"
+          }]
+      handlebars:
+        files: [{
+          expand: true
+          cwd: "bower_components/handlebars/"
+          src: "handlebars.runtime.min.js"
+          dest: "vendor/js/"
+          }]
 
-    # concat:
-    #   options:
-    #     separator: ','
-    #     banner: 'window.markers = ['
-    #     footer: ']'
-    #   dist:
-    #     src: ['_markers/*.json']
-    #     dest: 'js/markers.js'
+    handlebars:
+      all:
+        files:
+          'js/handlebarsTemplates.js': 'hbs-templates/*.hbs'
 
     exec:
       jekyll:
@@ -78,8 +89,10 @@ module.exports = (grunt) ->
           "_config.yml"
           "*.html"
           "*.md"
+          "hbs-templates/*.hbs"
         ]
         tasks: [
+          "handlebars:all"
           "exec:jekyll"
         ]
 
@@ -92,7 +105,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask "build", [
     "copy"
-    # "concat"
+    "handlebars:all"
     "exec:jekyll"
   ]
 

@@ -1,69 +1,52 @@
-var openedInfoWindow;
+this.Arsenal = this.Arsenal || {};
+this.Arsenal.map = this.Arsenal.map || {};
+this.Arsenal.map.openedInfoWindow = null;
 
-function initMap() {
-  var center = {lat: 52.231838, lng: 21.005995};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: center
-  });
-
-  function placeMarkersOnMap(markers) {
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: _.map(markers, function(marker) {
-        return {
-          location: new google.maps.LatLng(marker.position.lat, marker.position.lng),
-          weight: marker.weight
-        }
-      }),
-      gradient: [
-          'rgba(0, 255, 255, 0)',
-          'rgba(0, 255, 255, 1)',
-          'rgba(0, 191, 255, 1)',
-          'rgba(0, 127, 255, 1)',
-          'rgba(0, 63, 255, 1)',
-          'rgba(0, 0, 255, 1)',
-          'rgba(0, 0, 223, 1)',
-          'rgba(0, 0, 191, 1)',
-          'rgba(0, 0, 159, 1)',
-          'rgba(0, 0, 127, 1)',
-          'rgba(63, 0, 91, 1)',
-          'rgba(127, 0, 63, 1)',
-          'rgba(191, 0, 31, 1)',
-          'rgba(255, 0, 0, 1)'
-        ]
+this.Arsenal.map.initMap = function() {
+    var center = {lat: 52.231838, lng: 21.005995};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: center
     });
-    heatmap.setMap(map);
-    _.forEach(markers, function(markerConfig) {
-      var marker = new google.maps.Marker({
-        position: markerConfig.position,
-        map: map,
-        title: markerConfig.title
-      });
 
-      var infoWindow = new google.maps.InfoWindow({
-        content: getInfoWindow(markerConfig)
-      });
+    function placeMarkersOnMap(markers) {
+        _.forEach(markers, function(markerConfig) {
+            var marker = new google.maps.Marker({
+                position: markerConfig.position,
+                map: map,
+                title: markerConfig.title
+            });
 
-      marker.addListener('click', function() {
-        if(openedInfoWindow) {
-          openedInfoWindow.close()
-        }
-        openedInfoWindow = infoWindow;
-        infoWindow.open(map, marker);
-      });
-    });
-  }
+            var infoWindow = new google.maps.InfoWindow({
+                content: Arsenal.map.getInfoWindow(markerConfig)
+            });
 
-  getMarkers(placeMarkersOnMap);
+            marker.addListener('click', function() {
+                if(Arsenal.map.openedInfoWindow) {
+                    Arsenal.map.openedInfoWindow.close()
+                }
+                Arsenal.map.openedInfoWindow = infoWindow;
+                infoWindow.open(map, marker);
+                new Foundation.Abide($('#info-window-form'));
+                $('#info-window-form')
+                .on("formvalid.zf.abide", function(ev,frm) {
+                    Arsenal.game.submitAnswer(markerConfig, $('#info-window-form input[name=answer]').val());
+                })
+                // to prevent form from submitting upon successful validation
+                .on("submit", function(ev) {
+                    ev.preventDefault();
+                });
+            });
+        });
+    }
+
+    Arsenal.map.getMarkers(placeMarkersOnMap);
 }
 
-function getInfoWindow(markerConfig) {
-  return  '<div id="content">'+
-            '<div id="site-notice">'+
-            '</div>'+
-            '<h1>'+ markerConfig.title +'</h1>'+
-            '<div id="body-content">'+
-              markerConfig.description +
-            '</div>'+
-          '</div>';
+this.Arsenal.map.getInfoWindow = function(markerConfig) {
+    markerConfig.labels = Arsenal.config.labels || {
+        infoWindowForm_answerPlaceholder: 'Wpisz kod',
+        infoWindowForm_submitButton: 'OK'
+    };
+    return Handlebars.templates.mapInfoWindow(markerConfig);
 }

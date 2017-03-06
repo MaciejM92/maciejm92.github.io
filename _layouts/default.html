@@ -10,5 +10,8 @@
       </div>
     </div>
   {% include footer.html %}
+  {% if page.footer%}
+    {% include {{ page.footer }} %}
+  {% endif %}
   </body>
 </html>

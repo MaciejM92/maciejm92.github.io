@@ -1,0 +1,11 @@
+<form id='login-form' data-abide novalidate>
+  <div class="input-group">
+  {{#if loginForm_groupName}}
+    <span class="input-group-label">{{loginForm_groupName}}</span>
+  {{/if}}
+  <input name="group-name" class="input-group-field" type="text" placeholder="{{loginForm_groupNamePlaceholder}}" required>
+  <div class="input-group-button">
+    <input type="submit" class="button" value="{{loginForm_submitButton}}">
+  </div>
+</div>
+</form>

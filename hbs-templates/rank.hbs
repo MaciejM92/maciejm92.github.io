@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>{{labels.ranking_place}}</th>
+      <th>{{labels.ranking_groupName}}</th>
+      <th>{{labels.ranking_points}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td>{{inc @index}}</td>
+        <td>{{groupName}}</td>
+        <td>{{[sum points]}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

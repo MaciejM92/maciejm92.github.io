@@ -1,0 +1,20 @@
+.map-container,
+.rank-container {
+  height: calc(100vh - 4rem);
+}
+
+.rank-container {
+  overflow: scroll;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
+
+.loading-spinner img {
+  height: 2rem;
+}
