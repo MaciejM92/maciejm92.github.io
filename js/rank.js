@@ -7,7 +7,7 @@ this.Arsenal.rank.getRank = function(callback) {
     });
 };
 
-$(document).ready(function() {
+this.Arsenal.rank.updateRankComponent = function() {
     Arsenal.rank.getRank(function(data) {
         var templateConfig = {};
         templateConfig.data = data;
@@ -16,8 +16,18 @@ $(document).ready(function() {
             ranking_groupName: "Nazwa grupy",
             ranking_points: "Punkty"
         };
-        $('#rank').append(
+        $('#rank').html(
             Handlebars.templates.rank(templateConfig)
         );
     });
+}
+
+this.Arsenal.rank.scheduleRankUpdate = function() {
+    setInterval(Arsenal.rank.updateRankComponent, (15 + Math.floor(15.0 * Math.random())) * 1000);
+};
+
+
+$(document).ready(function() {
+    Arsenal.rank.updateRankComponent();
+    Arsenal.rank.scheduleRankUpdate();
 });

@@ -1,6 +1,7 @@
 this.Arsenal = this.Arsenal || {};
 this.Arsenal.map = this.Arsenal.map || {};
 this.Arsenal.map.openedInfoWindow = null;
+this.Arsenal.map.infoWindows = {}
 
 this.Arsenal.map.initMap = function() {
     var center = {lat: 52.231838, lng: 21.005995};
@@ -10,6 +11,7 @@ this.Arsenal.map.initMap = function() {
     });
 
     function placeMarkersOnMap(markers) {
+        Arsenal.map.loadInfoWindows(markers);
         _.forEach(markers, function(markerConfig) {
             var marker = new google.maps.Marker({
                 position: markerConfig.position,
@@ -17,9 +19,7 @@ this.Arsenal.map.initMap = function() {
                 title: markerConfig.title
             });
 
-            var infoWindow = new google.maps.InfoWindow({
-                content: Arsenal.map.getInfoWindow(markerConfig)
-            });
+            var infoWindow = Arsenal.map.infoWindows[markerConfig.uid];
 
             marker.addListener('click', function() {
                 if(Arsenal.map.openedInfoWindow) {
@@ -40,8 +40,41 @@ this.Arsenal.map.initMap = function() {
         });
     }
 
-    Arsenal.map.getMarkers(placeMarkersOnMap);
+    Arsenal.config.getLabels(function() {
+        Arsenal.map.getMarkers(placeMarkersOnMap);
+    });
+
+    $(document).ready(function() {
+        Arsenal.map.scheduleInfoWindowsUpdate();
+    });
 }
+
+this.Arsenal.map.loadInfoWindows = function(markers) {
+    _.forEach(markers, function(markerConfig) {
+        if(!Arsenal.map.infoWindows[markerConfig.uid]) {
+            var infoWindow = new google.maps.InfoWindow({
+                content: Arsenal.map.getInfoWindow(markerConfig)
+            });
+            Arsenal.map.infoWindows[markerConfig.uid] = infoWindow;
+        } else if (Arsenal.map.infoWindows[markerConfig.uid] !== this.Arsenal.map.openedInfoWindow) {
+            Arsenal.map.infoWindows[markerConfig.uid].setContent(Arsenal.map.getInfoWindow(markerConfig));
+        } else if(Arsenal.map.infoWindows[markerConfig.uid] === this.Arsenal.map.openedInfoWindow) {
+            Arsenal.map.reloadOpenedInfoWindow(markerConfig);
+        }
+    });
+};
+
+this.Arsenal.map.reloadOpenedInfoWindow = function(currentWindowConfig) {
+    $("#info-window-visited-by-value").html(currentWindowConfig.visitedBy);
+};
+
+this.Arsenal.map.updateInfoWindows = function() {
+    Arsenal.map.getMarkers(Arsenal.map.loadInfoWindows);
+};
+
+this.Arsenal.map.scheduleInfoWindowsUpdate = function() {
+    setInterval(Arsenal.map.updateInfoWindows, (15 + Math.floor(15.0 * Math.random())) * 1000);
+};
 
 this.Arsenal.map.getInfoWindow = function(markerConfig) {
     markerConfig.labels = Arsenal.config.labels || {

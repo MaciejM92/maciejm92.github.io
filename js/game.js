@@ -24,6 +24,13 @@ this.Arsenal.game.submitAnswer = function(markerConfig, answer) {
         })
         .always(function() {
             $("#info-window-loading").addClass('hide');
+            //TODO: remove if unnecessary
+            Arsenal.map.getMarkers(function(markers) {
+                var currentWindowConfig = _.find(markers, function(markerConfig) {
+                    return Arsenal.map.infoWindows[markerConfig.uid] === Arsenal.map.openedInfoWindow;
+                });
+                Arsenal.map.reloadOpenedInfoWindow(currentWindowConfig);
+            });
         });
     } else {
         //TODO: UNAUTHORIZED!

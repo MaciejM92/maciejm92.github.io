@@ -25,7 +25,11 @@ templates['mapInfoWindow'] = template({"compiler":[7,">= 4.0.0"],"main":function
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h1>\n  <div id=\"info-window-body-content\">\n    "
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "\n    <div id=\"info-window-loading\" class=\"hide loading-spinner\">\n      <img src=\"/img/ring.svg\" />\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message\">\n      "
+    + "\n    <div id=\"info-window-visited-by\">\n      "
+    + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_visitedBy : stack1), depth0))
+    + " <span id=\"info-window-visited-by-value\">"
+    + alias3(((helper = (helper = helpers.visitedBy || (depth0 != null ? depth0.visitedBy : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"visitedBy","hash":{},"data":data}) : helper)))
+    + "</span>\n    </div>\n    <div id=\"info-window-loading\" class=\"hide loading-spinner\">\n      <img src=\"/img/ring.svg\" />\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_successMessage : stack1), depth0))
     + "\n    </div>\n    <div id=\"info-window-error\" class=\"hide error-message\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessage : stack1), depth0))
