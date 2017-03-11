@@ -63,6 +63,13 @@ module.exports = (grunt) ->
           src: "handlebars.runtime.min.js"
           dest: "vendor/js/"
           }]
+      jqueryCountdown:
+        files: [{
+          expand: true
+          cwd: "bower_components/jquery.countdown/dist"
+          src: "jquery.countdown.min.js"
+          dest: "vendor/js/"
+          }]
 
     handlebars:
       all:
