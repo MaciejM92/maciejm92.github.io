@@ -1,25 +1,25 @@
-<div id="info-window-content">
+<div id="info-window-content" class="info-window">
   <div id="info-window-site-notice">
   </div>
   <h1>{{title}}</h1>
   <div id="info-window-body-content">
     {{description}}
-    <div id="info-window-visited-by">
+    <div id="info-window-visited-by" class="info-window-content-element">
       {{labels.infoWindow_visitedBy}} <span id="info-window-visited-by-value">{{visitedBy}}</span>
       <span id="info-window-visited-by-loading" class="hide loading-spinner">
         <img src="/img/ring.svg" />
       </span>
     </div>
-    <div id="info-window-success" class="hide success-message">
+    <div id="info-window-success" class="hide success-message info-window-content-element">
       {{labels.infoWindow_successMessage}}
     </div>
-    <div id="info-window-error" class="hide error-message">
+    <div id="info-window-error" class="hide error-message info-window-content-element">
       {{labels.infoWindow_errorMessage}}
     </div>
-    <div id="info-window-error-unauthorized" class="hide error-message">
+    <div id="info-window-error-unauthorized" class="hide error-message info-window-content-element">
       {{labels.infoWindow_errorMessageUnauthorized}}
     </div>
-    <form id='info-window-form' data-abide novalidate>
+    <form id='info-window-form' class="info-window-content-element" data-abide novalidate>
       <div class="input-group">
       <input name="answer" class="input-group-field" type="text" placeholder="{{labels.infoWindowForm_answerPlaceholder}}" required>
       <div class="input-group-button">

@@ -35,5 +35,7 @@ $on-laptop:        800px;
 //     }
 // }
 
-// Import partials from the `minima` theme.
+// Import partials
 @import "./game";
+@import "./layout";
+@import "./loginForm";

@@ -41,21 +41,21 @@ templates['loginForm'] = template({"1":function(container,depth0,helpers,partial
 templates['mapInfoWindow'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression, alias4=container.lambda;
 
-  return "<div id=\"info-window-content\">\n  <div id=\"info-window-site-notice\">\n  </div>\n  <h1>"
+  return "<div id=\"info-window-content\" class=\"info-window\">\n  <div id=\"info-window-site-notice\">\n  </div>\n  <h1>"
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h1>\n  <div id=\"info-window-body-content\">\n    "
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "\n    <div id=\"info-window-visited-by\">\n      "
+    + "\n    <div id=\"info-window-visited-by\" class=\"info-window-content-element\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_visitedBy : stack1), depth0))
     + " <span id=\"info-window-visited-by-value\">"
     + alias3(((helper = (helper = helpers.visitedBy || (depth0 != null ? depth0.visitedBy : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"visitedBy","hash":{},"data":data}) : helper)))
-    + "</span>\n      <span id=\"info-window-visited-by-loading\" class=\"hide loading-spinner\">\n        <img src=\"/img/ring.svg\" />\n      </span>\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message\">\n      "
+    + "</span>\n      <span id=\"info-window-visited-by-loading\" class=\"hide loading-spinner\">\n        <img src=\"/img/ring.svg\" />\n      </span>\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message info-window-content-element\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_successMessage : stack1), depth0))
-    + "\n    </div>\n    <div id=\"info-window-error\" class=\"hide error-message\">\n      "
+    + "\n    </div>\n    <div id=\"info-window-error\" class=\"hide error-message info-window-content-element\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessage : stack1), depth0))
-    + "\n    </div>\n    <div id=\"info-window-error-unauthorized\" class=\"hide error-message\">\n      "
+    + "\n    </div>\n    <div id=\"info-window-error-unauthorized\" class=\"hide error-message info-window-content-element\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessageUnauthorized : stack1), depth0))
-    + "\n    </div>\n    <form id='info-window-form' data-abide novalidate>\n      <div class=\"input-group\">\n      <input name=\"answer\" class=\"input-group-field\" type=\"text\" placeholder=\""
+    + "\n    </div>\n    <form id='info-window-form' class=\"info-window-content-element\" data-abide novalidate>\n      <div class=\"input-group\">\n      <input name=\"answer\" class=\"input-group-field\" type=\"text\" placeholder=\""
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindowForm_answerPlaceholder : stack1), depth0))
     + "\" required>\n      <div class=\"input-group-button\">\n        <input type=\"submit\" class=\"button\" value=\""
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindowForm_submitButton : stack1), depth0))

@@ -4,14 +4,17 @@
     {% include head.html %}
   </head>
   <body>
-    <div class="row content-wrapper">
-      <div class="column small-12 align-self-middle align-center">
-        {{ content }}
-      </div>
-    </div>
-  {% include footer.html %}
-  {% if page.footer%}
-    {% include {{ page.footer }} %}
-  {% endif %}
+    {% if page.header %}
+    <header>
+      {% include {{page.header}} %}
+    </header>
+    {% endif %}
+    <main class="content-wrapper">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+    {% if page.footer%}
+      {% include {{ page.footer }} %}
+    {% endif %}
   </body>
 </html>

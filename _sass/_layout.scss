@@ -1,0 +1,23 @@
+.tabs {
+  @media(min-width: 550px) {
+    background-image: url("/img/pointer-line.png");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.tabs-title>a {
+  padding: 1.25rem 1.25rem;
+}
+
+.tabs-title>a:focus,
+.tabs-title>a[aria-selected=true] {
+  background-color: #437baf;
+  color: white;
+}
+
+h1 {
+  @media print, screen and (min-width: 40em) {
+    font-size: 1.5rem;
+  }
+}

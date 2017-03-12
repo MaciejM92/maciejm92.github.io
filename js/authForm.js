@@ -1,5 +1,7 @@
 $(document).ready(function() {
     Arsenal.config.getLabels(function(labels) {
+        $('#login-form-loading').addClass('hide');
+        $('#login-form-container').removeClass('hide');
         $('#login-form-container').append(Handlebars.templates.loginForm(labels));
 
         new Foundation.Abide($('#login-form'));

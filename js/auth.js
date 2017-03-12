@@ -35,7 +35,9 @@ this.Arsenal.auth.login = function(groupName) {
 };
 
 $(document).ready(function() {
-    if(!Arsenal.auth.checkIfAuthorized() && window.location.pathname != '/') {
+    if(!Arsenal.auth.checkIfAuthorized() && window.location.pathname !== '/') {
         window.location.replace(window.location.origin);
+    } else if (Arsenal.auth.checkIfAuthorized() && window.location.pathname === '/') {
+        window.location.replace(window.location.origin + '/game.html');
     }
 });
