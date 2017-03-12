@@ -27,6 +27,7 @@ this.Arsenal.map.initMap = function() {
                 }
                 Arsenal.map.openedInfoWindow = infoWindow;
                 infoWindow.open(map, marker);
+                Arsenal.map.updateInfoWindows();
                 new Foundation.Abide($('#info-window-form'));
                 $('#info-window-form')
                 .on("formvalid.zf.abide", function(ev,frm) {
@@ -43,10 +44,6 @@ this.Arsenal.map.initMap = function() {
     Arsenal.config.getLabels(function() {
         Arsenal.map.getMarkers(placeMarkersOnMap);
     });
-
-    $(document).ready(function() {
-        Arsenal.map.scheduleInfoWindowsUpdate();
-    });
 }
 
 this.Arsenal.map.loadInfoWindows = function(markers) {
@@ -62,6 +59,7 @@ this.Arsenal.map.loadInfoWindows = function(markers) {
             Arsenal.map.reloadOpenedInfoWindow(markerConfig);
         }
     });
+    $("#info-window-visited-by-loading").addClass('hide');
 };
 
 this.Arsenal.map.reloadOpenedInfoWindow = function(currentWindowConfig) {
@@ -69,11 +67,8 @@ this.Arsenal.map.reloadOpenedInfoWindow = function(currentWindowConfig) {
 };
 
 this.Arsenal.map.updateInfoWindows = function() {
+    $("#info-window-visited-by-loading").removeClass('hide');
     Arsenal.map.getMarkers(Arsenal.map.loadInfoWindows);
-};
-
-this.Arsenal.map.scheduleInfoWindowsUpdate = function() {
-    setInterval(Arsenal.map.updateInfoWindows, (15 + Math.floor(15.0 * Math.random())) * 1000);
 };
 
 this.Arsenal.map.getInfoWindow = function(markerConfig) {

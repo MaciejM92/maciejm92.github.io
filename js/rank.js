@@ -8,6 +8,7 @@ this.Arsenal.rank.getRank = function(callback) {
 };
 
 this.Arsenal.rank.updateRankComponent = function() {
+    $('#rank-loading').removeClass('hide');
     Arsenal.rank.getRank(function(data) {
         var templateConfig = {};
         templateConfig.data = data;
@@ -19,15 +20,11 @@ this.Arsenal.rank.updateRankComponent = function() {
         $('#rank').html(
             Handlebars.templates.rank(templateConfig)
         );
+        $('#rank-loading').addClass('hide');
     });
 }
-
-this.Arsenal.rank.scheduleRankUpdate = function() {
-    setInterval(Arsenal.rank.updateRankComponent, (15 + Math.floor(15.0 * Math.random())) * 1000);
-};
 
 
 $(document).ready(function() {
     Arsenal.rank.updateRankComponent();
-    Arsenal.rank.scheduleRankUpdate();
 });

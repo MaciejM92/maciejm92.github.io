@@ -3,6 +3,7 @@ this.Arsenal.game = this.Arsenal.game || {};
 
 this.Arsenal.game.submitAnswer = function(markerConfig, answer) {
     if(Arsenal.auth.checkIfAuthorized()) {
+        $("#info-window-error-unauthorized").addClass('hide');
         $("#info-window-loading").removeClass('hide');
         $("#info-window-success").addClass('hide');
         $("#info-window-error").addClass('hide');
@@ -24,7 +25,6 @@ this.Arsenal.game.submitAnswer = function(markerConfig, answer) {
         })
         .always(function() {
             $("#info-window-loading").addClass('hide');
-            //TODO: remove if unnecessary
             Arsenal.map.getMarkers(function(markers) {
                 var currentWindowConfig = _.find(markers, function(markerConfig) {
                     return Arsenal.map.infoWindows[markerConfig.uid] === Arsenal.map.openedInfoWindow;
@@ -33,6 +33,6 @@ this.Arsenal.game.submitAnswer = function(markerConfig, answer) {
             });
         });
     } else {
-        //TODO: UNAUTHORIZED!
+        $("#info-window-error-unauthorized").removeClass('hide');
     }
 }

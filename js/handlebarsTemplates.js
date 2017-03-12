@@ -49,15 +49,17 @@ templates['mapInfoWindow'] = template({"compiler":[7,">= 4.0.0"],"main":function
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_visitedBy : stack1), depth0))
     + " <span id=\"info-window-visited-by-value\">"
     + alias3(((helper = (helper = helpers.visitedBy || (depth0 != null ? depth0.visitedBy : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"visitedBy","hash":{},"data":data}) : helper)))
-    + "</span>\n    </div>\n    <div id=\"info-window-loading\" class=\"hide loading-spinner\">\n      <img src=\"/img/ring.svg\" />\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message\">\n      "
+    + "</span>\n      <span id=\"info-window-visited-by-loading\" class=\"hide loading-spinner\">\n        <img src=\"/img/ring.svg\" />\n      </span>\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_successMessage : stack1), depth0))
     + "\n    </div>\n    <div id=\"info-window-error\" class=\"hide error-message\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessage : stack1), depth0))
+    + "\n    </div>\n    <div id=\"info-window-error-unauthorized\" class=\"hide error-message\">\n      "
+    + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessageUnauthorized : stack1), depth0))
     + "\n    </div>\n    <form id='info-window-form' data-abide novalidate>\n      <div class=\"input-group\">\n      <input name=\"answer\" class=\"input-group-field\" type=\"text\" placeholder=\""
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindowForm_answerPlaceholder : stack1), depth0))
     + "\" required>\n      <div class=\"input-group-button\">\n        <input type=\"submit\" class=\"button\" value=\""
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindowForm_submitButton : stack1), depth0))
-    + "\">\n      </div>\n    </div>\n    </form>\n  </div>\n</div>\n";
+    + "\">\n      </div>\n      <span id=\"info-window-loading\" class=\"hide loading-spinner\">\n        <img src=\"/img/ring.svg\" />\n      </span>\n    </div>\n    </form>\n  </div>\n</div>\n";
 },"useData":true});
 
 templates['rank'] = template({"1":function(container,depth0,helpers,partials,data) {

@@ -6,9 +6,9 @@
     {{description}}
     <div id="info-window-visited-by">
       {{labels.infoWindow_visitedBy}} <span id="info-window-visited-by-value">{{visitedBy}}</span>
-    </div>
-    <div id="info-window-loading" class="hide loading-spinner">
-      <img src="/img/ring.svg" />
+      <span id="info-window-visited-by-loading" class="hide loading-spinner">
+        <img src="/img/ring.svg" />
+      </span>
     </div>
     <div id="info-window-success" class="hide success-message">
       {{labels.infoWindow_successMessage}}
@@ -16,12 +16,18 @@
     <div id="info-window-error" class="hide error-message">
       {{labels.infoWindow_errorMessage}}
     </div>
+    <div id="info-window-error-unauthorized" class="hide error-message">
+      {{labels.infoWindow_errorMessageUnauthorized}}
+    </div>
     <form id='info-window-form' data-abide novalidate>
       <div class="input-group">
       <input name="answer" class="input-group-field" type="text" placeholder="{{labels.infoWindowForm_answerPlaceholder}}" required>
       <div class="input-group-button">
         <input type="submit" class="button" value="{{labels.infoWindowForm_submitButton}}">
       </div>
+      <span id="info-window-loading" class="hide loading-spinner">
+        <img src="/img/ring.svg" />
+      </span>
     </div>
     </form>
   </div>
