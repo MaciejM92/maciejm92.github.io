@@ -11,8 +11,27 @@ this.Arsenal.auth.checkIfAuthorized = function() {
 };
 
 this.Arsenal.auth.login = function(groupName) {
-    Cookies.set('auth', { groupName: groupName }, { expires: 7 });
-    window.location.pathname = Arsenal.config.GAME_RELATIVE_URL;
+    $("#auth-error").addClass('hide');
+    $("#auth-server-error").addClass('hide');
+    $.ajax({
+        url: Arsenal.config.AUTH_URL,
+        method: 'GET',
+        dataType: 'jsonp',
+        data: {
+            groupName: groupName
+        }
+    })
+    .done(function(result) {
+        if(result.result === 'error') {
+            $("#auth-error").removeClass('hide');
+        } else {
+            Cookies.set('auth', { groupName: groupName }, { expires: 7 });
+            window.location.pathname = Arsenal.config.GAME_RELATIVE_URL;
+        }
+    })
+    .fail(function(error) {
+        $("#auth-server-error").removeClass('hide');
+    })
 };
 
 $(document).ready(function() {

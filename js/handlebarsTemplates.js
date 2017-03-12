@@ -9,7 +9,11 @@ templates['loginForm'] = template({"1":function(container,depth0,helpers,partial
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 
-  return "<form id='login-form' data-abide novalidate>\n  <div class=\"input-group\">\n"
+  return "<div id='auth-error' class=\"error-message hide\">\n  "
+    + alias3(((helper = (helper = helpers.loginForm_authError || (depth0 != null ? depth0.loginForm_authError : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"loginForm_authError","hash":{},"data":data}) : helper)))
+    + "\n</div>\n<div id='auth-server-error' class=\"error-message hide\">\n  "
+    + alias3(((helper = (helper = helpers.loginForm_authServerError || (depth0 != null ? depth0.loginForm_authServerError : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"loginForm_authServerError","hash":{},"data":data}) : helper)))
+    + "\n</div>\n<form id='login-form' data-abide novalidate>\n  <div class=\"input-group\">\n"
     + ((stack1 = helpers["if"].call(depth0,(depth0 != null ? depth0.loginForm_groupName : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  <input name=\"group-name\" class=\"input-group-field\" type=\"text\" placeholder=\""
     + alias3(((helper = (helper = helpers.loginForm_groupNamePlaceholder || (depth0 != null ? depth0.loginForm_groupNamePlaceholder : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"loginForm_groupNamePlaceholder","hash":{},"data":data}) : helper)))
@@ -46,7 +50,7 @@ templates['rank'] = template({"1":function(container,depth0,helpers,partials,dat
   return "      <tr>\n        <td>"
     + alias2((helpers.inc || (depth0 && depth0.inc) || alias1).call(depth0,(data && data.index),{"name":"inc","hash":{},"data":data}))
     + "</td>\n        <td>"
-    + alias2(((helper = (helper = helpers.groupName || (depth0 != null ? depth0.groupName : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"groupName","hash":{},"data":data}) : helper)))
+    + alias2(((helper = (helper = helpers.mappedGroupName || (depth0 != null ? depth0.mappedGroupName : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"mappedGroupName","hash":{},"data":data}) : helper)))
     + "</td>\n        <td>"
     + alias2(((helper = (helper = helpers["sum points"] || (depth0 != null ? depth0["sum points"] : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"sum points","hash":{},"data":data}) : helper)))
     + "</td>\n      </tr>\n";
