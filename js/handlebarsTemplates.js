@@ -1,5 +1,21 @@
 (function() {
 var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['clock'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
+
+  return "<div class=\"time "
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\">\n  <span class=\"count curr top\">"
+    + alias3(((helper = (helper = helpers.curr || (depth0 != null ? depth0.curr : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"curr","hash":{},"data":data}) : helper)))
+    + "</span>\n  <span class=\"count next top\">"
+    + alias3(((helper = (helper = helpers.next || (depth0 != null ? depth0.next : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"next","hash":{},"data":data}) : helper)))
+    + "</span>\n  <span class=\"count next bottom\">"
+    + alias3(((helper = (helper = helpers.next || (depth0 != null ? depth0.next : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"next","hash":{},"data":data}) : helper)))
+    + "</span>\n  <span class=\"count curr bottom\">"
+    + alias3(((helper = (helper = helpers.curr || (depth0 != null ? depth0.curr : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"curr","hash":{},"data":data}) : helper)))
+    + "</span>\n</div>\n";
+},"useData":true});
+
 templates['loginForm'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
 
