@@ -1,6 +1,11 @@
+.game-wrapper,
 .map-container,
-.rank-container {
-  height: calc(100vh - 4rem);
+.rank-container, {
+  height: 100%;
+}
+
+.tabs-content {
+  height: calc(100% - 4rem);
 }
 
 .info-window-content-element {

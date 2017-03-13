@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 .tabs {
   @media(min-width: 550px) {
     background-image: url("/img/pointer-line.png");

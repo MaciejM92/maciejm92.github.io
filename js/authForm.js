@@ -1,3 +1,5 @@
+setLoginFormWrapperHeight();
+
 $(document).ready(function() {
     Arsenal.config.getLabels(function(labels) {
         $('#login-form-loading').addClass('hide');
@@ -16,3 +18,11 @@ $(document).ready(function() {
         });
     });
 });
+
+$(window).resize(function() {
+    setLoginFormWrapperHeight();
+});
+
+function setLoginFormWrapperHeight() {
+    $(".login-form-wrapper").height($("body").height() - $("body").width()/2);
+}

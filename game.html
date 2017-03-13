@@ -2,19 +2,21 @@
 layout: default
 footer: game_footer.html
 ---
-<ul class="tabs" data-tabs id="game-tabs">
-  <li class="tabs-title is-active"><a href="#map" aria-selected="true">Mapa</a></li>
-  <li class="tabs-title">
-    <a href="#rank" onclick="Arsenal.rank.updateRankComponent()">
-      Ranking
-      <span id="rank-loading" class="hide tabs-loading-spinner">
-        <img src="/img/ring.svg" />
-      </span>
-    </a>
-  </li>
-  <li class="float-right" id="clock"></li>
-</ul>
-<div class="tabs-content" data-tabs-content="game-tabs">
-  <div class="map-container tabs-panel is-active" id="map"></div>
-  <div class="rank-container tabs-panel" id="rank"></div>
-</div>
+<main class="game-wrapper">
+  <ul class="tabs" data-tabs id="game-tabs">
+    <li class="tabs-title is-active"><a href="#map" aria-selected="true">Mapa</a></li>
+    <li class="tabs-title">
+      <a href="#rank" onclick="Arsenal.rank.updateRankComponent()">
+        Ranking
+        <span id="rank-loading" class="hide tabs-loading-spinner">
+          <img src="/img/ring.svg" />
+        </span>
+      </a>
+    </li>
+    <li class="float-right" id="clock"></li>
+  </ul>
+  <div class="tabs-content" data-tabs-content="game-tabs">
+    <div class="map-container tabs-panel is-active" id="map"></div>
+    <div class="rank-container tabs-panel" id="rank"></div>
+  </div>
+</main>
