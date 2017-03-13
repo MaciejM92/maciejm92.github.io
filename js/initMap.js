@@ -15,6 +15,7 @@ this.Arsenal.map.initMap = function() {
         _.forEach(markers, function(markerConfig) {
             var marker = new google.maps.Marker({
                 position: markerConfig.position,
+                icon: '/img/marker.png',
                 map: map,
                 title: markerConfig.title
             });
