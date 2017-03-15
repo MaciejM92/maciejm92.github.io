@@ -2,6 +2,7 @@ this.Arsenal = this.Arsenal || {};
 this.Arsenal.map = this.Arsenal.map || {};
 this.Arsenal.map.openedInfoWindow = null;
 this.Arsenal.map.infoWindows = {}
+this.Arsenal.map.resizeLock = false;
 
 this.Arsenal.map.initMap = function() {
     var center = {lat: 52.231838, lng: 21.005995};
@@ -51,8 +52,10 @@ this.Arsenal.map.initMap = function() {
                 });
                 $(window).resize(function() {
                     var offsetDiff = window.innerHeight - $('#info-window-form').offset().top;
-                    if(offsetDiff < 60) {
-                        mapRecenter(0, offsetDiff);
+                    if(offsetDiff < 80 && !this.Arsenal.map.resizeLock) {
+                        this.Arsenal.map.resizeLock = true;
+                        mapRecenter(0, 80 - offsetDiff);
+                        setTimeout(function() { this.Arsenal.map.resizeLock = false}, 1000);
                     }
                 });
             });

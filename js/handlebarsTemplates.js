@@ -59,7 +59,7 @@ templates['mapInfoWindow'] = template({"compiler":[7,">= 4.0.0"],"main":function
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessageUnauthorized : stack1), depth0))
     + "\n    </div>\n    <form id='info-window-form' class=\"info-window-content-element\" data-abide novalidate>\n      <div class=\"input-group\">\n      <input name=\"answer\" class=\"input-group-field\" type=\"text\" placeholder=\""
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindowForm_answerPlaceholder : stack1), depth0))
-    + "\" required>\n      <div class=\"input-group-button\">\n        <input type=\"submit\" class=\"button\" value=\""
+    + "\" required autocomplete=\"off\">\n      <div class=\"input-group-button\">\n        <input type=\"submit\" class=\"button\" value=\""
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindowForm_submitButton : stack1), depth0))
     + "\">\n      </div>\n      <span id=\"info-window-loading\" class=\"hide loading-spinner\">\n        <img src=\"/img/ring.svg\" />\n      </span>\n    </div>\n    </form>\n  </div>\n</div>\n";
 },"useData":true});
