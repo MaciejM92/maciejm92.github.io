@@ -51,6 +51,8 @@ templates['mapInfoWindow'] = template({"compiler":[7,">= 4.0.0"],"main":function
     + alias3(((helper = (helper = helpers.visitedBy || (depth0 != null ? depth0.visitedBy : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"visitedBy","hash":{},"data":data}) : helper)))
     + "</span>\n      <span id=\"info-window-visited-by-loading\" class=\"hide loading-spinner\">\n        <img src=\"/img/ring.svg\" />\n      </span>\n    </div>\n    <div id=\"info-window-success\" class=\"hide success-message info-window-content-element\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_successMessage : stack1), depth0))
+    + "\n    </div>\n    <div id=\"info-window-wrong\" class=\"hide error-message info-window-content-element\">\n      "
+    + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_wrongMessage : stack1), depth0))
     + "\n    </div>\n    <div id=\"info-window-error\" class=\"hide error-message info-window-content-element\">\n      "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.labels : depth0)) != null ? stack1.infoWindow_errorMessage : stack1), depth0))
     + "\n    </div>\n    <div id=\"info-window-error-unauthorized\" class=\"hide error-message info-window-content-element\">\n      "
