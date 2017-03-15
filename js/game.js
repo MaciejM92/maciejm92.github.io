@@ -7,6 +7,7 @@ this.Arsenal.game.submitAnswer = function(markerConfig, answer) {
         $("#info-window-loading").removeClass('hide');
         $("#info-window-success").addClass('hide');
         $("#info-window-error").addClass('hide');
+        $("#info-window-wrong").addClass('hide');
         $.ajax({
             url: Arsenal.config.GAME_FORM_URL,
             method: 'POST',
@@ -17,8 +18,14 @@ this.Arsenal.game.submitAnswer = function(markerConfig, answer) {
                 answer: answer
             }
         })
-        .done(function() {
-            $("#info-window-success").removeClass('hide');
+        .done(function(data) {
+            console.log(data);
+            if(data.result === "success") {
+                $("#info-window-success").removeClass('hide');
+            } else {
+                $("#info-window-wrong").removeClass('hide');
+            }
+
         })
         .fail(function() {
             $("#info-window-error").removeClass('hide');
