@@ -10,6 +10,18 @@ this.Arsenal.map.initMap = function() {
         center: center
     });
 
+    function mapRecenter(offsetx,offsety) {
+        var point1 = map.getProjection().fromLatLngToPoint(map.getCenter());
+        var point2 = new google.maps.Point(
+            ( (typeof(offsetx) == 'number' ? offsetx : 0) / Math.pow(2, map.getZoom()) ) || 0,
+            ( (typeof(offsety) == 'number' ? offsety : 0) / Math.pow(2, map.getZoom()) ) || 0
+        );
+        map.setCenter(map.getProjection().fromPointToLatLng(new google.maps.Point(
+            point1.x - point2.x,
+            point1.y + point2.y
+        )));
+    }
+
     function placeMarkersOnMap(markers) {
         Arsenal.map.loadInfoWindows(markers);
         _.forEach(markers, function(markerConfig) {
@@ -32,6 +44,12 @@ this.Arsenal.map.initMap = function() {
                 $('#info-window-form')
                 .on("formvalid.zf.abide", function(ev,frm) {
                     Arsenal.game.submitAnswer(markerConfig, $('#info-window-form input[name=answer]').val());
+                })
+                .on("click", function(ev) {
+                    var offsetDiff = window.innerHeight - $('#info-window-form').offset().top;
+                    if(offsetDiff < 80) {
+                        mapRecenter(0, 80 + offsetDiff);
+                    }
                 })
                 // to prevent form from submitting upon successful validation
                 .on("submit", function(ev) {
