@@ -45,15 +45,15 @@ this.Arsenal.map.initMap = function() {
                 .on("formvalid.zf.abide", function(ev,frm) {
                     Arsenal.game.submitAnswer(markerConfig, $('#info-window-form input[name=answer]').val());
                 })
-                .on("click", function(ev) {
-                    var offsetDiff = window.innerHeight - $('#info-window-form').offset().top;
-                    if(offsetDiff < 80) {
-                        mapRecenter(0, 80 + offsetDiff);
-                    }
-                })
                 // to prevent form from submitting upon successful validation
                 .on("submit", function(ev) {
                     ev.preventDefault();
+                });
+                $(window).resize(function() {
+                    var offsetDiff = window.innerHeight - $('#info-window-form').offset().top;
+                    if(offsetDiff < 60) {
+                        mapRecenter(0, offsetDiff);
+                    }
                 });
             });
         });
